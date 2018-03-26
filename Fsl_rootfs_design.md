@@ -73,6 +73,10 @@
     ```
     程序的日志文件写到/tmp/log目录下，由后台进程刷新到flash中。
  
+ ## 系统登录
+    用户名： root
+    密  码： CdYq@1808#
+ 
 ## 参考
 * [freescale文件系统构建说明](http://10.0.0.3:9000/zhangjm/fhos/wikis/Design/fsl_rootfs_build)
   

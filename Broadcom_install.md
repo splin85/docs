@@ -82,7 +82,7 @@
     编译内核时：
     cp ../../buildroot/board/broadcom/hurricane2/linux-3.6.5-flash.config .config
     make HOSTCXX=g++-4.7 HOSTCC=gcc-4.7 oldconfig
-    make HOSTCXX=g++-4.7 HOSTCC=gcc-4.7 -j2
+    make HOSTCXX=g++-4.7 HOSTCC=gcc-4.7
     
     1. scripts/kconfig/conf --oldconfig Kconfig
     ../../bcmdrivers/Kconfig:39: can't open file "../../bcmdrivers/pka/Kconfig"

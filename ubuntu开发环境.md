@@ -44,6 +44,10 @@
     获取splin的vimrc配置文件，拷贝到~/.vimrc (https://github.com/splin85/MyFirstGit.git)
     安装plugin插件 
     
+    不能保存文件：E382: Cannot write, 'buftype' option is set
+    : verbose set buftype
+    : setlocal buftype=
+    
 ## 路由IP配置
     1. 一网卡设置nat；
     2. 一网卡设置host-only，连接到virtualbox的虚拟网卡上；
