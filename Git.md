@@ -8,3 +8,7 @@
 3. 删除未跟踪的文件  
     `git clean -nf`   //删除未跟踪文件  
     `git clean -nfd`  //连未跟踪的目录一起删除
+    
+4. 删除本地有但远程没有的分支  
+    `git remote show origin`  
+    `git remoter prune origin`

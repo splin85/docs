@@ -91,3 +91,48 @@
     
     2. Can't use '!defined(@array)' (Maybe you should just omit the defined()?) at kernel/timeconst.pl line 373.
     将if (!defined(@val)) 改为if (!(@val))
+    
+## 编译uboot
+    make O=./build-output distclean
+    make O=./build-output hurricane2_config
+    make O=./build-output all
+   
+## nand分区
+
+ | name| start| size | notes|
+ |:---:|:----:|:----:|:----:|
+ |uboot image|  0x00000000| 0x00200000|     2M
+ |uboot   env|  0x00200000|0x00400000|      4M
+ |kern  image|  0x00600000|0x00a00000|     10M
+ |dev    tree|  0x01000000|0x00100000|      1M
+ |hard   info|  0x01100000|0x00100000|      1M
+ |rootfs     |  0x01200000|0x05000000|     80M
+ |apps/libs  |  0x06200000|0x10000000|    256M
+ |conf       |  0x16200000|0x02000000|     32M
+ |user     fs|  0x18200000|0x14000000|    320M
+ |log        |  0x2c200000|0x13d00000|    317M
+
+
+
+telnet root用户登录：
+/etc/security
+
+## ramdisk 内核配置
+1. 配置blk及支持ramdisk
+
+2. shell数组表示方法
+
+## gpio
+
+  | gpio|  usage  |
+  |:----:|:-----:|
+  |gpio0|手动复位，未使用|
+  |gpio1|看门狗喂狗信号|
+  |gpio2|看门狗使能信号|
+  |gpio3|百兆phy复位|
+  |gpio4|温度传感器告警输入|
+  |gpio5|散热器风扇开关|
+  |gpio6| 网卡旁路信号|
+  |gpio7| 网卡旁路信号|
+    
+    
