@@ -136,3 +136,5 @@ telnet root用户登录：
   |gpio7| 网卡旁路信号|
     
     
+## dts的编译Makefile
+    scripts/Makefile.lib
