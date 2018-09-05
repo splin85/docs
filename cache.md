@@ -1,5 +1,5 @@
 # CPU cache
-# 硬件原理
+## Cache原理
     -------------------------------------
     flag | tag1 | word1 word2 word3 word4
     flag | tag2 | word1 word2 word3 word4
@@ -23,3 +23,16 @@
         offset = 6, 64=2^6
         分组 = 32K/(8*64B)=64组
         tag = 32 - 6 - 6 = 20
+        
+    
+## Cache查询
+    VIVT: virtual index virutal tag
+    VIPT: virtual index physical tag
+    PIPT: physical index physical tag
+
+## Cache策略
+    写策略：  writethrough及writeback
+    替换策略：伪随机替换法及轮转法 
+    LRU: 最近最少使用策略
+
+## ARM使用协处理器管理Cache
