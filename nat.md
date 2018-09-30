@@ -1,5 +1,67 @@
 # Linux Nat分析
 
+# Nat 
+## Nat 原理 
+    本设备实现了outbound及server两种Nat：
+    outbound: 为SNAT，接口发送的报文会进行源IP-PORT替换
+    server:   为DNAT，接口接收的报文会进行目的IP-PORT替换
+    
+### Nat outbound(SNAT) 添加
+    1. 进入vlan接口，配置Nat outbound
+        fhos(config)# interface vlan 1
+        fhos(config-vlan-1)# nat outbound 192.168.12.0/24 12345 to 12348 outside 10.0.0.38 12345 to 12348
+        
+     2. 查看Nat outbound配置
+        fhos(config-vlan-1)# do show nat outbound 
+
+        Type        Interface    Protocol    Prefix:Ports                      NAT                               Handle  
+        Outbound    v.1          any         192.168.12.0/24:12345-12348       10.0.0.38/32:12345-12348          3
+
+        Total nat outbound rules: 1
+         
+### Nat server(DNAT) 添加
+    1. 进入vlan接口，配置Nat outbound
+        fhos(config)# interface vlan 1
+        fhos(config-vlan-1)# nat server 10.0.0.38 12349 inside 192.168.13.1 12349
+    
+    2. 查看Nat server配置
+        fhos(config-vlan-1)# do show nat server 
+
+        Type        Interface    Protocol    Prefix:Ports                      NAT                               Handle  
+        Server      v.1          any         10.0.0.38/32:12349                192.168.13.1/32:12349             4
+
+        Total nat server rules: 1
+
+## Nat 配置查看
+    fhos(config-vlan-1)# do show nat 
+
+    Type        Interface    Protocol    Prefix:Ports                      NAT                               Handle  
+    Server      v.1          any         10.0.0.38/32:12349                192.168.13.1/32:12349             4
+
+    Outbound    v.1          any         192.168.12.0/24:12345-12348       10.0.0.38/32:12345-12348          3
+
+    Total nat all rules: 2
+
+## Nat 删除
+    Nat 配置删除可以根据Nat handle或者Nat全配置删除
+    1. 根据handle删除
+        fhos(config)# no nat outbound rule handle 3
+    
+    2, 根据Nat配置删除
+        fhos(config)# interface vlan 1
+        fhos(config-vlan-1)# no nat server 10.0.0.38 12349 inside 192.168.13.1 12349
+     
+    3. 查看Nat配置
+        fhos(config-vlan-1)# do show nat 
+
+        Type        Interface    Protocol    Prefix:Ports                      NAT                               Handle  
+
+
+        Total nat all rules: 0
+
+    4, Nat配置全部删除
+        fhos(config)# no nat all rules
+
 ## 端口号分配
     void nf_nat_l4proto_unique_tuple(const struct nf_nat_l3proto *l3proto,
 				 struct nf_conntrack_tuple *tuple,

@@ -18,3 +18,6 @@
 1. Mem行total=used+free，表示物理内存的统计
 2. 第二行 used=used(Mem)-buffers/cache  free=free(Mem)+buffers/cache
     表示linux系统内存的统计，由于buffers/cache可以被回收，所以free增加。
+    
+## 替换文件夹下文件行内容
+    ls | xargs sed -i '11,12s/__L2_L2D_LBDT/__L2_LBDT/g'
